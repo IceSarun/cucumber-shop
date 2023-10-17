@@ -1,5 +1,6 @@
 package ku.shop;
-
+//b6410406878
+//Sarunpawat Phosoi
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -31,6 +32,17 @@ public class BuyStepdefs {
     @Then("total should be {float}")
     public void total_should_be(double total) {
         assertEquals(total, order.getTotal());
+    }
+
+    @Then("a {string} in stock is {int} exists")
+    public void product_in_stock(String name,int quantity){
+        Product prod = catalog.getProduct(name);
+        assertEquals(quantity,prod.getStock());
+    }
+
+    @When("I add {string} with price {float} in stock and stock of {int} exists")
+    public void add_product(String name, double price, int stock) {
+        catalog.addProduct(name, price, stock);
     }
 }
 
